@@ -1,0 +1,36 @@
+<view class="video-page">
+  <view class="custom-nav-bar" style="height: {{navBarHeight}}rpx;">
+    <view class="back-btn" bindtap="goBack">
+      <image class="back-icon" src="/images/左箭头.svg" mode="aspectFit"></image>
+    </view>
+    <text class="nav-title" style="top: {{navTitleTop}}rpx;">更多视频</text>
+  </view>
+
+  <view class="video-list" style="margin-top: {{navBarHeight}}rpx;">
+    <view class="video-item" wx:if="{{currentVideo}}">
+      <video
+        id="currentVideo"
+        class="video-player"
+        src="{{currentVideo}}"
+        show-center-play-btn
+        enable-cache
+        bindplay="onVideoPlay"
+      ></video>
+    </view>
+    <view class="video-item" wx:for="{{videoList}}" wx:key="id">
+      <video
+        id="video_{{index}}"
+        class="video-player"
+        src="{{item.url}}"
+        poster="{{item.cover}}"
+        show-center-play-btn
+        enable-cache
+        bindplay="onVideoPlay"
+      ></video>
+      <text class="video-title">{{item.title}}</text>
+    </view>
+    <view class="empty-tip" wx:if="{{!currentVideo && videoList.length === 0}}">
+      <text>暂无视频</text>
+    </view>
+  </view>
+</view>

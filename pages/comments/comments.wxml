@@ -1,0 +1,25 @@
+<view class="comments-page">
+  <view class="custom-nav-bar" style="height: {{navBarHeight}}rpx;">
+    <view class="back-btn" bindtap="goBack">
+      <image class="back-icon" src="/images/左箭头.svg" mode="aspectFit"></image>
+    </view>
+    <text class="nav-title" style="top: {{navTitleTop}}rpx;">精彩留言</text>
+  </view>
+
+  <view class="comments-list" style="margin-top: {{navBarHeight}}rpx;">
+    <view class="comment-item" wx:for="{{comments}}" wx:key="id">
+      <view class="comment-avatar">
+        <image wx:if="{{item.avatar}}" src="{{item.avatar}}" mode="aspectFill"></image>
+        <text wx:else>{{item.name.length > 0 ? item.name[0] : '?'}}</text>
+      </view>
+      <view class="comment-content">
+        <text class="comment-name">{{item.name}}</text>
+        <text class="comment-text">{{item.text}}</text>
+        <text class="comment-time">{{item.time}}</text>
+      </view>
+    </view>
+    <view class="empty-tip" wx:if="{{comments.length === 0}}">
+      <text>暂无留言</text>
+    </view>
+  </view>
+</view>

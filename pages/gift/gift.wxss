@@ -1,0 +1,111 @@
+.gift-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #f5f5f5;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+
+.custom-nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+}
+
+.back-btn {
+  position: absolute;
+  left: 0;
+  top: 70rpx;
+  width: 100rpx;
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.back-icon {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.nav-title {
+  color: #333333;
+  width: 100%;
+  text-align: center;
+  font-size: 35rpx;
+  line-height: 120rpx;
+  font-weight: bold;
+  position: absolute;
+  z-index: 1;
+  font-family: '华文楷体';
+}
+
+.gift-record {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+  background: #fff;
+  border-radius: 15rpx;
+  margin-bottom: 15rpx;
+}
+
+.gift-record-left {
+  display: flex;
+  align-items: center;
+}
+
+.gift-record-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #b71c1c, #d32f2f);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: bold;
+  overflow: hidden;
+  margin-right: 15rpx;
+}
+
+.gift-record-name {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.gift-record-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.gift-record-detail {
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 8rpx;
+}
+
+.gift-record-amount {
+  font-size: 32rpx;
+  color: #b71c1c;
+  font-weight: bold;
+}
+
+.empty-tip {
+  text-align: center;
+  padding: 100rpx 0;
+  color: #999;
+  font-size: 28rpx;
+}

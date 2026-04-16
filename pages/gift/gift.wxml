@@ -1,0 +1,27 @@
+<view class="gift-page">
+  <view class="custom-nav-bar" style="height: {{navBarHeight}}rpx;">
+    <view class="back-btn" bindtap="goBack">
+      <image class="back-icon" src="/images/左箭头.svg" mode="aspectFit"></image>
+    </view>
+    <text class="nav-title" style="top: {{navTitleTop}}rpx;">祝福礼物</text>
+  </view>
+
+  <view class="gift-list" style="margin-top: {{navBarHeight}}rpx;">
+    <view class="gift-record" wx:for="{{giftRecords}}" wx:key="id">
+      <view class="gift-record-left">
+        <view class="gift-record-avatar">
+          <image wx:if="{{item.avatar}}" src="{{item.avatar}}" mode="aspectFill"></image>
+          <text wx:else>{{item.name.length > 0 ? item.name[0] : '?'}}</text>
+        </view>
+        <text class="gift-record-name">{{item.name}}</text>
+      </view>
+      <view class="gift-record-right">
+        <text class="gift-record-detail">送了 {{item.giftName}} × {{item.count}}</text>
+        <text class="gift-record-amount">{{item.amount}}元</text>
+      </view>
+    </view>
+    <view class="empty-tip" wx:if="{{giftRecords.length === 0}}">
+      <text>暂无礼物记录</text>
+    </view>
+  </view>
+</view>

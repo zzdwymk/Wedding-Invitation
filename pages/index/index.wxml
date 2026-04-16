@@ -1,0 +1,418 @@
+<!--index.wxml-->
+<!-- 自定义透明导航栏 -->
+<view class="custom-nav-bar" style="height: {{navBarHeight}}rpx; opacity: {{navBarOpacity}}; transform: translateY({{navBarTop}}px);">
+  <text class="nav-title" style="color: {{navTitleColor}};top: {{navTitleTop}}rpx;">适我愿兮❤️婚礼邀请函</text>
+</view>
+
+<scroll-view class="scrollarea" scroll-y type="list" bindscroll="onScroll" scroll-with-animation="{{true}}" scroll-into-view="{{scrollToViewId}}" enhanced="{{true}}" bounces="{{false}}" show-scrollbar="{{false}}">
+  <!-- 第一段：婚礼主视觉 -->
+  <view class="section section-1 {{showElements.section1 ? 'show' : ''}}" id="section1">
+    <view class="page-one">
+      <view class="bg-image-container">
+        <image class="bg-image" src="http://localhost:3000/img/%E7%94%B5%E5%BD%B1%E5%86%99%E7%9C%9F%E9%A3%8E%E6%A0%BC%E5%A9%9A%E7%A4%BC%E5%B0%81%E9%9D%A2%E7%94%9F%E6%88%90.png" mode="cover"></image>
+        <view class="bg-overlay"></view>
+        <view class="top-poem-overlay">
+          <text class="poem-text">I love three things in this world，Sun, moon and you. Sun for morning, moon for night, and you forever.</text>
+        </view>
+        <view class="welcome-overlay">
+          <text class="welcome-text">Welcome to Wedding</text>
+        </view>
+        <view class="bg-double-happiness">
+          <view class="name-wrapper">
+            <text class="groom-en">GROOM</text>
+            <text class="groom-name">迪迦</text>
+          </view>
+          <text class="double-happiness-char">囍</text>
+          <view class="name-wrapper">
+            <text class="bride-en">BRIDE</text>
+            <text class="bride-name">哥斯拉</text>
+          </view>
+        </view>
+        <view class="wedding-time-overlay">
+          <text class="wedding-time-text">2026.05.20 08:00</text>
+          <text class="wedding-location-text">广东省东莞市麻涌镇广州新华学院</text>
+        </view>
+      </view>
+      
+      <view class="white-content">
+        <view class="photo-wrapper">
+          <view class="main-photo">
+            <image src="https://img.freepik.com/free-photo/wedding-couple-outdoors_1150-38050.jpg" mode="aspectFill"></image>
+          </view>
+          <text class="sweet-label">Sweet</text>
+        </view>
+      </view>
+      
+      <view class="invitation-label">
+        <text class="invitation-text">WEDDING</text>
+        <text class="invitation-sub">INVITATION</text>
+      </view>
+      
+      <view class="love-story-content">
+        <text class="story-line">以前觉得婚礼是一则官方公告</text>
+        <text class="story-line">现在才明白这是一场人生为数不多的相聚</text>
+        <text class="story-line">是千里之外的奔赴</text>
+        <text class="story-line">是不计得失的支持</text>
+        <text class="story-line">感谢一路相伴的家人朋友</text>
+        <text class="story-line">许久未见 甚是想念</text>
+      </view>
+      
+      <text class="wedding-date">2026.05.20</text>
+      <text class="double-happiness">囍</text>
+      <text class="see-you">我们，婚礼见~</text>
+      
+      <view class="our-story-label">
+        <text class="our-text">OUR</text>
+        <text class="story-text">LOVE STORY</text>
+      </view>
+
+      <view class="video-placeholder">
+        <video
+          id="indexVideo"
+          wx:if="{{videoUrl}}"
+          class="video-player"
+          src="{{videoUrl}}"
+          show-center-play-btn
+          enable-cache
+          bindplay="pauseMusic"
+        ></video>
+        <image class="video-cover" src="{{videoCover}}" mode="aspectFill" wx:if="{{videoCover && !videoUrl}}"></image>
+        <view class="video-mask" wx:if="{{!videoCover && !videoUrl}}">
+          <text class="video-icon">▶</text>
+          <text class="video-text">婚礼预告</text>
+        </view>
+      </view>
+      <view class="more-video-btn" bindtap="goToVideo">
+        <text class="more-btn-text">更多视频</text>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 第二段：倒计时 -->
+  <view class="section section-2 {{showElements.section2 ? 'show' : ''}}" id="section2">
+    <view class="page-two">
+      <view class="date-info">
+        <text class="date-text">2026年5月20日 {{weddingInfo.week}}</text>
+        <text class="lunar-text">{{weddingInfo.lunar}} 8:00</text>
+      </view>
+
+      <view class="calendar-wrapper">
+        <view class="calendar">
+          <view class="calendar-header">
+            <text class="calendar-title">2026年5月</text>
+          </view>
+          <view class="calendar-weekdays">
+            <text class="weekday">日</text>
+            <text class="weekday">一</text>
+            <text class="weekday">二</text>
+            <text class="weekday">三</text>
+            <text class="weekday">四</text>
+            <text class="weekday">五</text>
+            <text class="weekday">六</text>
+          </view>
+          <view class="calendar-days">
+            <text class="day empty"></text>
+            <text class="day empty"></text>
+            <text class="day empty"></text>
+            <text class="day empty"></text>
+            <text class="day empty"></text>
+            <text class="day">1</text>
+            <text class="day">2</text>
+            <text class="day">3</text>
+            <text class="day">4</text>
+            <text class="day">5</text>
+            <text class="day">6</text>
+            <text class="day">7</text>
+            <text class="day">8</text>
+            <text class="day">9</text>
+            <text class="day">10</text>
+            <text class="day">11</text>
+            <text class="day">12</text>
+            <text class="day">13</text>
+            <text class="day">14</text>
+            <text class="day">15</text>
+            <text class="day">16</text>
+            <text class="day">17</text>
+            <text class="day">18</text>
+            <text class="day">19</text>
+            <text class="day wedding-day">20
+                <text class="lunar-date">初四</text>
+              </text>
+            <text class="day">21</text>
+            <text class="day">22</text>
+            <text class="day">23</text>
+            <text class="day">24</text>
+            <text class="day">25</text>
+            <text class="day">26</text>
+            <text class="day">27</text>
+            <text class="day">28</text>
+            <text class="day">29</text>
+            <text class="day">30</text>
+            <text class="day">31</text>
+          </view>
+        </view>
+      </view>
+      
+      <view class="countdown-wrapper">
+        <view class="countdown-timer">
+          <view class="timer-box">
+            <text class="timer-num">{{countdown.days}}</text>
+            <text class="timer-unit">天</text>
+          </view>
+          <view class="timer-box">
+            <text class="timer-num">{{countdown.hours}}</text>
+            <text class="timer-unit">时</text>
+          </view>
+          <view class="timer-box">
+            <text class="timer-num">{{countdown.minutes}}</text>
+            <text class="timer-unit">分</text>
+          </view>
+          <view class="timer-box">
+            <text class="timer-num">{{countdown.seconds}}</text>
+            <text class="timer-unit">秒</text>
+          </view>
+        </view>
+        
+        <view class="poem-photo-area">
+          <view class="short-poem">
+            <text class="poem-line">天光乍泄,落入凡尘烟火里</text>
+            <text class="poem-line">我跨越千山万水而来</text>
+            <text class="poem-line">只为与你共赴三餐四季</text>
+          </view>
+          <view class="two-photos">
+            <image src="https://img.freepik.com/free-photo/wedding-couple-outdoors_1150-38050.jpg" mode="aspectFill"></image>
+            <image src="https://img.freepik.com/free-photo/wedding-couple-outdoors_1150-38050.jpg" mode="aspectFill"></image>
+          </view>
+        </view>
+      </view>
+      
+      <view class="english-poem">
+        <text class="english-line">As the clouds and mist dissipate</text>
+        <text class="english-line">love you and everyone knows it</text>
+      </view>
+      
+      <view class="bottom-photo-wrapper">
+        <image src="https://img.freepik.com/free-photo/wedding-couple-outdoors_1150-38050.jpg" mode="aspectFill"></image>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 第三段：宾客回执 -->
+  <view class="section section-3 {{showElements.section3 ? 'show' : ''}}" id="section3">
+    <view class="page-three">
+      <view class="location-card" bindtap="goToMap">
+        <!-- <view class="location-icon"> 
+          <text>📍</text> 
+        </view> -->
+        <view class="location-content">
+          <text class="location-title">婚礼地点</text>
+          <text class="location-address">地球中国华南广东省东莞市麻涌镇广州新华学院</text>
+        </view>
+        <view class="location-arrow">
+          <image src="/images/右箭头.svg" />
+        </view>
+      </view>
+
+      <view class="rsvp-form">
+        <view class="form-title">宾客回执</view>
+        <form bindsubmit="onSubmitRSVP">
+          <view class="input-item">
+            <input class="form-input" name="guestName" placeholder="*姓名" placeholder-class="placeholder-style" />
+          </view>
+          <view class="input-item">
+            <input class="form-input" name="guestCount" type="number" placeholder="*出席人数" placeholder-class="placeholder-style" />
+          </view>
+          <button class="submit-button" form-type="submit">
+            <text class="submit-text">提交</text>
+          </button>
+        </form>
+      </view>
+
+      <view class="guest-list-area">
+        <text class="guest-list-title">宾客名单</text>
+        <swiper class="guest-swiper" circular autoplay vertical interval="3000" display-multiple-items="3">
+          <swiper-item wx:for="{{guestList}}" wx:key="id" class="guest-swiper-item">
+            <view class="guest-card">
+              <view class="guest-left">
+                <view class="guest-avatar">
+                  <image wx:if="{{item.avatar}}" src="{{item.avatar}}" mode="aspectFill"></image>
+                  <text wx:else>{{item.name.length > 0 ? item.name[0] : '?'}}</text>
+                </view>
+                <text class="guest-name">{{item.name}}</text>
+              </view>
+              <view class="guest-right">
+                <text class="guest-count">{{item.count || 2}}人</text>
+              </view>
+            </view>
+          </swiper-item>
+        </swiper>
+      </view>
+      
+      <view class="gift-area" id="giftArea">
+        <text class="gift-title">礼物区</text>
+        <view class="gift-list">
+          <view class="gift-record" wx:for="{{giftRecords}}" wx:key="id" wx:for-index="idx" wx:if="{{idx < 3}}">
+            <view class="gift-record-left">
+              <view class="gift-record-avatar">
+                <image wx:if="{{item.avatar}}" src="{{item.avatar}}" mode="aspectFill"></image>
+                <text wx:else>{{item.name.length > 0 ? item.name[0] : '?'}}</text>
+              </view>
+              <text class="gift-record-name">{{item.name}}</text>
+            </view>
+            <view class="gift-record-right">
+              <text class="gift-record-detail">送了 {{item.giftName}} × {{item.count}}</text>
+              <text class="gift-record-amount">{{item.amount}}元</text>
+            </view>
+          </view>
+        </view>
+        <view class="more-btn" wx:if="{{giftRecords.length >= 3}}" bindtap="goToGift">
+          <text class="more-btn-text">更多礼物</text>
+          <text class="more-btn-arrow">›</text>
+        </view>
+      </view>
+
+      <view class="page-comments" id="pageComments">
+        <view class="page-comment-title">留言区</view>
+        <view class="page-comment-item" wx:for="{{comments}}" wx:key="id" wx:for-index="idx" wx:if="{{idx < 4}}">
+          <view class="page-comment-avatar">
+            <image wx:if="{{item.avatar}}" src="{{item.avatar}}" mode="cover"></image>
+            <text wx:else>{{item.name.length > 0 ? item.name[0] : '?'}}</text>
+          </view>
+          <view class="page-comment-content">
+            <view class="page-comment-name">{{item.name}}</view>
+            <view class="page-comment-text">{{item.text}}</view>
+            <view class="page-comment-time">{{item.time}}</view>
+          </view>
+        </view>
+        <view class="more-btn" wx:if="{{comments.length > 4}}" bindtap="goToComments">
+          <text class="more-btn-text">更多留言</text>
+          <text class="more-btn-arrow">›</text>
+        </view>
+      </view>
+
+      <view class="welcome-area">
+        <text class="welcome-main">敬备喜酌</text>
+        <text class="welcome-sub">WELCOME TO OUR WEDDING</text>
+        <text class="welcome-end">恭候莅临</text>
+      </view>
+
+    </view>
+  </view>
+  
+</scroll-view>
+
+<!-- 固定底部悬浮按钮 -->
+<view class="fixed-bottom-bar">
+  <view class="icon-item" bindtap="onShowComment">
+    <image class="icon-content" src="/images/留言板.svg" />
+    <text class="icon-text">祝福留言</text>
+  </view>
+  <view class="icon-item" bindtap="onFireworks">
+    <image class="icon-fire" src="/images/烟火.svg" />
+    <text class="icon-text">烟火贺喜</text>
+  </view>
+  <view class="icon-item" bindtap="onHeartTap">
+    <image class="icon-heart" src="/images/同心锁@2x.svg" />
+    <text class="icon-text">永结同心</text>
+  </view>
+  <view class="icon-item" id="gift" bindtap="onShowGift">
+    <image class="icon-gift" src="/images/礼物 .svg" />
+  </view>
+  <view class="icon-item" id="zan">
+    <image class="icon-zan" src="/images/点赞.svg" />
+  </view>
+</view>
+
+<!-- 可拖动音乐播放器 -->
+<view class="music-player" style="left: {{musicPosition.x}}px; top: {{musicPosition.y}}px;" bindtouchstart="onMusicTouchStart" bindtouchmove="onMusicTouchMove">
+  <view class="music-btn playing" style="animation-play-state: {{isMusicPlaying ? 'running' : 'paused'}};" bindtap="toggleMusic">
+    <image class="music-icon" src="/images/音乐.svg" mode="aspectFit"></image>
+  </view>
+</view>
+
+<!-- 爱心动画 -->
+<canvas type="2d" id="heartCanvas" class="heart-canvas" wx:if="{{showHeartCanvas}}"></canvas>
+
+<!-- 留言弹窗 -->
+<view class="comment-modal" wx:if="{{showCommentModal}}" bindtap="onCloseComment">
+  <view class="comment-content" catchtap="preventBubble">
+    <view class="comment-header">
+      <text class="comment-title">送上祝福</text>
+      <view class="comment-close" bindtap="onCloseComment">×</view>
+    </view>
+    <view class="comment-form">
+      <view class="comment-avatar-preview" wx:if="{{userAvatar}}">
+        <image src="{{userAvatar}}" mode="aspectFill"></image>
+      </view>
+      <view class="comment-name-wrapper">
+        <input class="comment-input" placeholder="请输入您的姓名" value="{{commentName}}" bindinput="onCommentNameInput" />
+        <view class="comment-getuser" bindtap="onGetUserProfile">获取昵称</view>
+      </view>
+      <textarea class="comment-textarea" placeholder="写下您的祝福..." value="{{commentText}}" bindinput="onCommentTextInput" maxlength="200"></textarea>
+      <view class="comment-submit" bindtap="onSubmitComment">提交祝福</view>
+    </view>
+    
+  </view>
+</view>
+
+<!-- 礼物弹窗 -->
+<view class="gift-modal" wx:if="{{showGiftModal}}" bindtap="onCloseGift">
+  <view class="gift-content" catchtap="preventBubble">
+    <view class="gift-header">
+      <text class="gift-title-text">送礼物</text>
+      <view class="gift-close" bindtap="onCloseGift">×</view>
+    </view>
+    <view class="gift-user-info">
+      <view class="gift-avatar-preview" wx:if="{{userAvatar}}">
+        <image src="{{userAvatar}}" mode="aspectFill"></image>
+      </view>
+      <view class="gift-name-wrapper">
+        <input class="gift-nickname-input" placeholder="请输入您的昵称" value="{{commentName}}" bindinput="onCommentNameInput" />
+        <view class="gift-getuser" bindtap="onGetUserProfile">获取信息</view>
+      </view>
+    </view>
+    <view class="gift-grid">
+      <view class="gift-item {{selectedGiftIndex === index ? 'selected' : ''}}" wx:for="{{gifts}}" wx:key="index" bindtap="onSelectGift" data-index="{{index}}">
+        <image class="gift-icon" src="{{item.icon}}" mode="aspectFit"></image>
+        <text class="gift-price">{{item.price}}元</text>
+      </view>
+    </view>
+    <view class="gift-custom">
+      <text class="gift-custom-label">自定义金额</text>
+      <input class="gift-custom-input" type="number" placeholder="请输入金额" value="{{customAmount}}" bindinput="onCustomAmountInput" />
+    </view>
+    <view class="gift-submit" bindtap="onSubmitGift">送出礼物</view>
+  </view>
+</view>
+
+<!-- 烟花动画 -->
+<view class="fireworks-container" wx:if="{{showFireworks}}">
+  <view class="firework-particle" wx:for="{{particles}}" wx:key="id" style="left: {{item.x}}px; top: {{item.y}}px; background: {{item.color}}; width: {{item.size * 2}}px; height: {{item.size * 2}}px; opacity: {{item.alpha}}; box-shadow: 0 0 {{item.size * 3}}px {{item.color}};"></view>
+  <view class="firework-rising" wx:for="{{fireworks}}" wx:key="id" wx:if="{{item.phase === 'rising'}}" style="left: {{item.x}}px; top: {{item.y}}px; background: {{item.color}}; box-shadow: 0 0 15px {{item.color}}, 0 0 30px {{item.color}};"></view>
+</view>
+
+<!-- 模态框：分享二维码 -->
+<view class="modal-overlay" wx:if="{{showShareModal}}" bindtap="onCloseShareModal">
+  <view class="modal-content" catchtap="preventBubble">
+    <text class="modal-title">手机扫一扫分享给朋友</text>
+    <view class="modal-qrcode">
+      <image src="{{qrcodeUrl}}" mode="aspectFit" wx:if="{{qrcodeUrl}}"></image>
+      <text wx:else style="color: #999;">生成中...</text>
+    </view>
+    <text class="modal-hint">使用微信扫一扫，精彩内容与好友共享</text>
+    <view class="modal-close" bindtap="onCloseShareModal">关闭</view>
+  </view>
+</view>
+
+<!-- 模态框：保存二维码 -->
+<view class="modal-overlay" wx:if="{{showSaveQRModal}}" bindtap="onCloseSaveQRModal">
+  <view class="modal-content" catchtap="preventBubble">
+    <text class="modal-title">保存二维码</text>
+    <view class="modal-qrcode">
+      <image src="{{qrcodeUrl}}" mode="aspectFit" wx:if="{{qrcodeUrl}}"></image>
+      <text wx:else style="color: #999;">生成中...</text>
+    </view>
+    <text class="modal-hint">长按二维码保存到相册</text>
+    <view class="modal-close" bindtap="onCloseSaveQRModal">关闭</view>
+  </view>
+</view>
