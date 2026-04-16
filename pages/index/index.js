@@ -91,7 +91,9 @@ Component({
     isMusicPlaying: false,
     musicPosition: { x: 173, y: 618 },
     hearts: [],
-    showHeartCanvas: false
+    showHeartCanvas: false,
+    showZanCanvas: false,
+    zanList: []
   },
   lifetimes: {
     attached() {
@@ -229,6 +231,37 @@ Component({
         drawFrame();
       });
     },
+
+    // 点击点赞，飘浮点赞效果
+    onZanTap() {
+      const systemInfo = wx.getWindowInfo();
+      const newZanList = [];
+      for (let i = 0; i < 6; i++) {
+        newZanList.push({
+          id: Date.now() + i,
+          x: 80 + Math.random() * (systemInfo.windowWidth - 160),
+          delay: Math.random() * 0.3,
+          type: (i % 3) + 1,
+          expireTime: Date.now() + 2500
+        });
+      }
+      const zanList = [...this.data.zanList, ...newZanList];
+      this.setData({ showZanCanvas: true, zanList });
+      if (!this.zanCleanTimer) {
+        this.zanCleanTimer = setInterval(() => {
+          const now = Date.now();
+          const filtered = this.data.zanList.filter(item => item.expireTime > now);
+          if (filtered.length === 0) {
+            clearInterval(this.zanCleanTimer);
+            this.zanCleanTimer = null;
+            this.setData({ showZanCanvas: false, zanList: [] });
+          } else {
+            this.setData({ zanList: filtered });
+          }
+        }, 500);
+      }
+    },
+
     onChooseAvatar(e) {
       const { avatarUrl } = e.detail
       const { nickName } = this.data.userInfo
@@ -637,40 +670,37 @@ Component({
       const targetX = 100 + Math.random() * (this.screenWidth - 200);
       const targetY = 100 + Math.random() * (this.screenHeight * 0.25);
 
+      const newFirework = {
+        id: Date.now(),
+        x: this.screenWidth / 2,
+        y: this.screenHeight - 100,
+        targetX: targetX,
+        targetY: targetY,
+        color: color,
+        phase: 'rising'
+      };
+
+      const fireworks = [...this.data.fireworks, newFirework];
       this.setData({
         showFireworks: true,
-        fireworks: [{
-          id: Date.now(),
-          x: this.screenWidth / 2,
-          y: this.screenHeight - 100,
-          targetX: targetX,
-          targetY: targetY,
-          color: color,
-          phase: 'rising'
-        }],
-        particles: []
+        fireworks: fireworks
       });
 
-      this.fireworkInterval = setInterval(() => {
-        this.updateRisingFirework();
-      }, 30);
+      if (!this.fireworkInterval) {
+        this.fireworkInterval = setInterval(() => {
+          this.updateRisingFirework();
+        }, 30);
 
-      this.particleInterval = setInterval(() => {
-        this.updateParticles();
-      }, 30);
-
-      setTimeout(() => {
-        this.clearIntervals();
-        setTimeout(() => {
-          this.setData({ showFireworks: false, fireworks: [], particles: [] });
-        }, 1000);
-      }, 3500);
+        this.particleInterval = setInterval(() => {
+          this.updateParticles();
+        }, 30);
+      }
     },
 
     updateRisingFirework() {
       const fireworks = this.data.fireworks.map(f => ({...f}));
 
-      for (let i = 0; i < fireworks.length; i++) {
+      for (let i = fireworks.length - 1; i >= 0; i--) {
         const f = fireworks[i];
         if (f.phase === 'rising') {
           const dx = f.targetX - f.x;
@@ -736,6 +766,11 @@ Component({
       }
 
       this.setData({ particles });
+
+      if (particles.length === 0 && this.data.fireworks.length === 0) {
+        this.clearIntervals();
+        this.setData({ showFireworks: false });
+      }
     },
 
     clearIntervals() {

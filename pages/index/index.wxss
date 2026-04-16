@@ -178,7 +178,7 @@ page {
 .welcome-text {
   font-size: 60rpx;
   color: #fff;
-  font-family: 'welcome-text', serif;
+  font-family: 'Times New Roman', serif;
   /* font-style: italic; */
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.5), 2px 2px 4px rgba(0, 0, 0, 0.5);
   letter-spacing: 4rpx;
@@ -1766,4 +1766,80 @@ page {
   height: 100%;
   pointer-events: none;
   z-index: 998;
+}
+
+/* 点赞飘浮动画 */
+.zan-bubble-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 998;
+  overflow: hidden;
+}
+
+.zan-bubble {
+  position: absolute;
+  bottom: 0;
+  width: 40rpx;
+  height: 40rpx;
+  opacity: 0;
+  animation: zanFloat 1.5s ease-out forwards;
+}
+
+.zan-bubble image {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes zanFloat {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-50vh) scale(1);
+  }
+  75% {
+    opacity: 1;
+    transform: translateY(-75vh) translateX(15px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100vh) scale(0.8);
+  }
+}
+
+.zan-bubble-1 {
+  animation-name: zanFloat1;
+}
+.zan-bubble-2 {
+  animation-name: zanFloat2;
+}
+.zan-bubble-3 {
+  animation-name: zanFloat3;
+}
+
+@keyframes zanFloat1 {
+  0% { opacity: 1; transform: translateY(0) scale(0.5); }
+  50% { opacity: 1; transform: translateY(-50vh) scale(1); }
+  75% { opacity: 1; transform: translateY(-75vh) translateX(-20px) scale(1); }
+  100% { opacity: 0; transform: translateY(-100vh) translateX(-10px) scale(0.8); }
+}
+
+@keyframes zanFloat2 {
+  0% { opacity: 1; transform: translateY(0) scale(0.5); }
+  50% { opacity: 1; transform: translateY(-50vh) scale(1); }
+  75% { opacity: 1; transform: translateY(-75vh) translateX(25px) scale(1); }
+  100% { opacity: 0; transform: translateY(-100vh) translateX(15px) scale(0.8); }
+}
+
+@keyframes zanFloat3 {
+  0% { opacity: 1; transform: translateY(0) scale(0.6); }
+  50% { opacity: 1; transform: translateY(-50vh) scale(1); }
+  75% { opacity: 1; transform: translateY(-75vh) translateX(-10px) scale(1); }
+  100% { opacity: 0; transform: translateY(-100vh) translateX(5px) scale(0.6); }
 }

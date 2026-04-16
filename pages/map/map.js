@@ -15,7 +15,7 @@ Page({
       iconPath: '/images/定位.svg'
     }],
     address: '广东省东莞市麻涌镇广州新华学院',
-    phone: '027-12345678'
+    phone: '027-110'
   },
 
   onLoad() {

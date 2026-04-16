@@ -37,7 +37,7 @@
       <view class="white-content">
         <view class="photo-wrapper">
           <view class="main-photo">
-            <image src="https://img.freepik.com/free-photo/wedding-couple-outdoors_1150-38050.jpg" mode="aspectFill"></image>
+            <image src="http://localhost:3000/img/3.png" mode="aspectFill"></image>
           </view>
           <text class="sweet-label">Sweet</text>
         </view>
@@ -180,8 +180,8 @@
             <text class="poem-line">只为与你共赴三餐四季</text>
           </view>
           <view class="two-photos">
-            <image src="https://img.freepik.com/free-photo/wedding-couple-outdoors_1150-38050.jpg" mode="aspectFill"></image>
-            <image src="https://img.freepik.com/free-photo/wedding-couple-outdoors_1150-38050.jpg" mode="aspectFill"></image>
+            <image src="http://localhost:3000/img/4.png" mode="aspectFill"></image>
+            <image src="http://localhost:3000/img/3.png" mode="aspectFill"></image>
           </view>
         </view>
       </view>
@@ -192,7 +192,7 @@
       </view>
       
       <view class="bottom-photo-wrapper">
-        <image src="https://img.freepik.com/free-photo/wedding-couple-outdoors_1150-38050.jpg" mode="aspectFill"></image>
+        <image src="http://localhost:3000/img/2.png" mode="aspectFill"></image>
       </view>
     </view>
   </view>
@@ -318,7 +318,7 @@
   <view class="icon-item" id="gift" bindtap="onShowGift">
     <image class="icon-gift" src="/images/礼物 .svg" />
   </view>
-  <view class="icon-item" id="zan">
+  <view class="icon-item" id="zan" bindtap="onZanTap">
     <image class="icon-zan" src="/images/点赞.svg" />
   </view>
 </view>
@@ -332,6 +332,13 @@
 
 <!-- 爱心动画 -->
 <canvas type="2d" id="heartCanvas" class="heart-canvas" wx:if="{{showHeartCanvas}}"></canvas>
+
+<!-- 点赞动画 -->
+<view class="zan-bubble-container" wx:if="{{showZanCanvas}}">
+  <view wx:for="{{zanList}}" wx:key="id" class="zan-bubble zan-bubble-{{item.type}}" style="left: {{item.x}}px; animation-delay: {{item.delay}}s;">
+    <image src="/images/点赞.svg" mode="aspectFit" />
+  </view>
+</view>
 
 <!-- 留言弹窗 -->
 <view class="comment-modal" wx:if="{{showCommentModal}}" bindtap="onCloseComment">
