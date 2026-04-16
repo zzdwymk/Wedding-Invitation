@@ -11,8 +11,10 @@
       <view class="bg-image-container">
         <image class="bg-image" src="http://localhost:3000/img/%E7%94%B5%E5%BD%B1%E5%86%99%E7%9C%9F%E9%A3%8E%E6%A0%BC%E5%A9%9A%E7%A4%BC%E5%B0%81%E9%9D%A2%E7%94%9F%E6%88%90.png" mode="cover"></image>
         <view class="bg-overlay"></view>
-        <view class="top-poem-overlay">
-          <text class="poem-text">I love three things in this world，Sun, moon and you. Sun for morning, moon for night, and you forever.</text>
+        <view class="poem-text-wrapper">
+          <text class="poem-text">I love three things in this world</text>
+          <text class="poem-text">Sun for morning, moon for night</text>
+          <text class="poem-text">And you forever</text>
         </view>
         <view class="welcome-overlay">
           <text class="welcome-text">Welcome to Wedding</text>
